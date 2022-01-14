@@ -3,6 +3,7 @@ PRECISION = 3
 def parse_args args
   if args.length != 2
     puts "Expected 2 arguments 'calendar future-value', got #{args.length}"
+    exit
   else
     calendar = Calendar.parse args[0]
     future_value = args[1].to_i
