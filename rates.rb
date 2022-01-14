@@ -15,8 +15,14 @@ class Calendar
   include Enumerable
 
   def self.parse expr
-    amount, period = expr.split "x"
-    return Calendar.new Array.new(period.to_i, amount.to_i)
+    periods = expr.split "+"
+    months = periods.map { |period| parse_period(period) }.flatten
+    return Calendar.new months
+  end
+
+  def self.parse_period expr
+    amount, num_months = expr.split "x"
+    return Array.new(num_months.to_i, amount.to_i)
   end
 
   def initialize months
