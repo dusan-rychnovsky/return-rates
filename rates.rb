@@ -22,7 +22,7 @@ class Calendar
     @months = months
   end
 
-  def future_value ir
+  def current_value ir
     monthly_interest_rate = ir / 12.0
     @months.reduce 0 do |acc, payment|
       acc * (1 + monthly_interest_rate) + payment
@@ -33,7 +33,7 @@ class Calendar
     ir = 1.0
     ir_upper = ir_lower = nil
     while true do
-      value = future_value ir
+      value = current_value ir
 
       if value > cv then
         ir_upper = ir
