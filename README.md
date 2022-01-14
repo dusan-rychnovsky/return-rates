@@ -19,7 +19,8 @@ For example:
 ruby rates.rb 3000x4+6000x51 398991.05
 ```
 
-Should return:
+means that the contributions were 3000 the first 4 months and then 6000 the next 51 months\
+and should return:
 ```
 Interest rate: 10.1% p.a.
 ```
