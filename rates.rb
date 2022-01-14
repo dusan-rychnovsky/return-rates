@@ -1,4 +1,4 @@
-PRECISION = 3
+PRECISION = 3 # 3 decimal digits equals 0.1% precision
 
 def parse_args args
   if args.length != 2
