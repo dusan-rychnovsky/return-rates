@@ -2,12 +2,12 @@ PRECISION = 3
 
 def parse_args args
   if args.length != 2
-    puts "Expected 2 arguments 'calendar future-value', got #{args.length}"
+    puts "Expected 2 arguments 'calendar current-value', got #{args.length}"
     exit
   else
     calendar = Calendar.parse args[0]
-    future_value = args[1].to_i
-    return calendar, future_value
+    current_value = args[1].to_i
+    return calendar, current_value
   end
 end
 
@@ -29,16 +29,16 @@ class Calendar
     end
   end
 
-  def interest_rate fv
+  def interest_rate cv
     ir = 1.0
     ir_upper = ir_lower = nil
     while true do
       value = future_value ir
 
-      if value > fv then
+      if value > cv then
         ir_upper = ir
       end
-      if value < fv then
+      if value < cv then
         ir_lower = ir
       end
       
@@ -46,9 +46,9 @@ class Calendar
         if ir_lower.round(PRECISION) == ir_upper.round(PRECISION) then
           return ir
         end
-        if value < fv then
+        if value < cv then
           ir = (ir + ir_upper) / 2.0
-        elsif value > fv then
+        elsif value > cv then
           ir = (ir_lower + ir) / 2.0
         else
           return ir
@@ -68,6 +68,6 @@ class Calendar
   end
 end
 
-calendar, future_value = parse_args ARGV
-yearly_interest_rate = calendar.interest_rate future_value
+calendar, current_value = parse_args ARGV
+yearly_interest_rate = calendar.interest_rate current_value
 puts "Interest rate: #{(yearly_interest_rate * 100).round(1)}% p.a."
