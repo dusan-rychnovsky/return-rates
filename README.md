@@ -23,3 +23,7 @@ Should return:
 ```
 Interest rate: 10.1% p.a.
 ```
+
+## How it works
+
+The correct return rate is approximated using binary search. The result is accurate with 0.1% precision.
